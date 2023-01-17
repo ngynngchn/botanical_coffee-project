@@ -1,0 +1,219 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Playfair Display";
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("../fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+@mixin card($bd-radius) {
+  border-radius: $bd-radius;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: $white;
+}
+
+@mixin font($font-size, $font-weight) {
+  font-size: $font-size;
+  font-variation-settings: "wght" $font-weight;
+}
+
+/*COLORS  */
+$main-color: #6ca89c;
+$secondary-color: #283331;
+$white: #fafafa;
+
+body {
+  width: 430px;
+  height: 932px;
+  border: 1px solid #000;
+  position: relative;
+}
+
+img {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+h1 {
+  @include font(2.2rem, 600);
+}
+h2 {
+  @include font(1.3rem, 400);
+}
+h3 {
+  @include font(1.1rem, 600);
+}
+h3 {
+  font-variation-settings: "wght" 600;
+}
+h4 {
+  font-variation-settings: "wght" 600;
+  color: $main-color;
+}
+h5 {
+  @include font(0.6rem, 600);
+}
+h6 {
+  font-size: 0.9rem;
+}
+p {
+  font-size: 0.6rem;
+}
+
+/*========= NAVBAR =========*/
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  section {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $main-color;
+    padding-top: 15vh;
+    a {
+      text-decoration: none;
+      font-size: 3.1rem;
+      color: $white;
+      display: block;
+      text-align: center;
+      margin: 5vh;
+    }
+  }
+}
+
+/*========= HEADER =========*/
+
+header {
+  width: 100%;
+  margin: 3vh 20px 3vh;
+  h1 {
+    @include font(2.2rem, 600);
+  }
+  h2 {
+    @include font(1.3rem, 400);
+  }
+}
+
+/*========= MAIN =========*/
+
+main {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 4px 20px 15px;
+  .card {
+    @include card(20px);
+    grid-column: 1/5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    img {
+      width: 100%;
+    }
+    .description {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      padding: 20px;
+      width: max-content;
+      h3 {
+        grid-column: 1/4;
+        @include font(1.1rem, 600);
+      }
+      p {
+        font-size: 0.6rem;
+      }
+      h4 {
+        grid-column: 1/3;
+        margin-top: 1vh;
+        font-variation-settings: "wght" 600;
+        color: $main-color;
+      }
+      .icon {
+        width: 20px;
+        margin-top: 1vh;
+      }
+    }
+  }
+  .card.second {
+    grid-column: 3/7;
+    transform: scale(0.8) translateX(155px);
+    position: absolute;
+    animation: move 1s ease-in forwards;
+  }
+  .card:not(.second) {
+    animation: movetwo 1s ease-in forwards;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: scale(0.8) translateX(155px);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+  }
+}
+
+@keyframes movetwo {
+  0% {
+    transform: scale(1) translateX(0);
+  }
+  100% {
+    transform: scale(0.8) translateX(-155px);
+  }
+}
+
+.otherProducts {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  overflow: hidden;
+  padding: 1vh 20px;
+  column-gap: 20px;
+  h3 {
+    grid-column: 1/7;
+    font-variation-settings: "wght" 600;
+    margin-block: 1vh 2vh;
+  }
+  figure {
+    @include card(10px);
+    transform: translateX(50px);
+    figcaption {
+      display: flex;
+      padding: 1vh;
+    }
+    h5 {
+      @include font(0.6rem, 600);
+      width: 70px;
+    }
+    h6 {
+      font-size: 0.9rem;
+      color: $main-color;
+      margin-top: 1vh;
+    }
+    img {
+      width: 100%;
+      grid-column: 1/3;
+    }
+  }
+  .first {
+    grid-column: 1/3;
+  }
+  .second {
+    grid-column: 3/5;
+  }
+  .third {
+    grid-column: 5/7;
+  }
+}
